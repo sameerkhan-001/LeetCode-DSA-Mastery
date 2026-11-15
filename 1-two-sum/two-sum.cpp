@@ -2,9 +2,9 @@ class Solution {
 public:
 
     //Optimal Solution
-
     //Pattern :-> Hashing (unordered map)
     vector<int> twoSum(vector<int>& nums, int target) {
+        
         unordered_map<int, int> m;
 
         for (int i = 0; i < nums.size(); i++) {
