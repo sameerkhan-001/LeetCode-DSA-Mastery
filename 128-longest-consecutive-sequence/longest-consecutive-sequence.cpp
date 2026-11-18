@@ -1,22 +1,22 @@
 class Solution {
 public:
+    //Pattern :-> Unordered Set
     int longestConsecutive(vector<int>& nums) {
-        unordered_set<int> st;
-
-        //store all nums ele's in set st
-        for(auto it : nums) st.insert(it);
-        int len;
-        int maxLen = 0;
         
-        for(auto it : st) {
-            if(st.find(it - 1) == st.end()) {   //starting point
-                len = 0;
-                while(st.find(it + len) != st.end()) len++;
+        unordered_set<int> st(nums.begin(), nums.end());
 
-                maxLen = max(maxLen, len);
+        int ans = 0;
+
+        for(auto it : st) {
+            if(st.find(it-1) == st.end()) { //it is the starting point of curr seq
+                int len = 1;
+                while(st.find(it+len) != st.end()) {    //we got another seq ele
+                    len++; //increase seq len
+                }
+                ans = max(ans, len);    //store max len of seq
             }
         }
 
-        return maxLen; 
+        return ans; //return maximum len of seq
     }
 };
